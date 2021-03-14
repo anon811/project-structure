@@ -22,7 +22,7 @@ export default class Page {
   }
 
   initComponents() {
-    const productId = '101-planset-lenovo-yt3-x90l-64-gb-3g-lte-cernyj';
+    const productId = 'freza-metabo-626535000';
 
     this.components.productFrom = new ProductForm(productId);
   }

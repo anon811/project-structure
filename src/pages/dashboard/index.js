@@ -138,10 +138,10 @@ export default class Page {
   }
 
   initEventListeners () {
-    this.components.rangePicker.element.addEventListener('date-select', event => {
+    this.components.rangePicker.element.addEventListener('date-select', async event => {
       const { from, to } = event.detail;
       this.updateChartsComponents(from, to);
-      this.updateTableComponent(from, to);
+      await this.updateTableComponent(from, to);
     });
   }
 
