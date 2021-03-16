@@ -67,7 +67,14 @@ export default class Page {
       acc.push(subcat);
       return acc;
     }, []);
-    console.log(data)
+    const result = await fetchJson(this.saveUrl, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    this.components.notification.show();
   }
 
   remove() {

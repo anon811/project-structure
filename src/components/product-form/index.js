@@ -250,13 +250,11 @@ export default class ProductForm {
   }
 
   setFormData() {
-    const {productForm} = this.subElements;
+    const {productForm} = this.subElements
     const excludedFields = ['images'];
     const fields = Object.keys(this.defaultFormData).filter(item => !excludedFields.includes(item));
-
     fields.forEach(item => {
       const element = productForm.querySelector(`#${item}`);
-
       element.value = this.formData[item] || this.defaultFormData[item];
     });
   }

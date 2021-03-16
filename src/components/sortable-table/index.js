@@ -2,6 +2,8 @@ import fetchJson from "../../utils/fetch-json.js";
 
 export default class SortableTable {
   element;
+  href;
+  url;
   subElements = {};
   data = [];
   loading = false;
@@ -59,6 +61,7 @@ export default class SortableTable {
 
   constructor(headersConfig = [], {
     url = '',
+    href = '',
     sorted = {
       id: headersConfig.find(item => item.sortable).id,
       order: 'asc'
@@ -71,6 +74,7 @@ export default class SortableTable {
 
     this.headersConfig = headersConfig;
     this.url = new URL(url, process.env.BACKEND_URL);
+    this.href = href;
     this.sorted = sorted;
     this.isSortLocally = isSortLocally;
     this.step = step;
@@ -114,7 +118,6 @@ export default class SortableTable {
 
   addRows(data) {
     this.data = data;
-
     this.subElements.body.innerHTML = this.getTableRows(data);
   }
 
@@ -163,10 +166,14 @@ export default class SortableTable {
 
   getTableRows(data) {
     return data.map(item => `
-      <div class="sortable-table__row">
+      <a class="sortable-table__row" ${this.getHref(item)}>
         ${this.getTableRow(item, data)}
-      </div>`
+      </a>`
     ).join('');
+  }
+
+  getHref(item) {
+    return this.href ? `href="/${this.href}/${item.id}"` : '';
   }
 
   getTableRow(item) {

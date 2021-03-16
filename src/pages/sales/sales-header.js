@@ -14,7 +14,10 @@ const header = [
     title: 'Date',
     sortable: true,
     template: data => {
-      return new Date(data).toLocaleDateString();
+     return `
+      <div class="sortable-table__cell">
+        ${new Date(data).toLocaleDateString()}
+      </div>`;
     }
   },
   {
